@@ -30,6 +30,7 @@ class ASGStack(core.Stack):
             machine_image=ec2.AmazonLinuxImage(
                 generation=ec2.AmazonLinuxGeneration.AMAZON_LINUX_2
                 ),
+            key_name="evan",
             vpc_subnets=ec2.SubnetSelection(subnet_type=SubnetType.PRIVATE),
             user_data=userdata,
         )
@@ -45,7 +46,7 @@ class ASGStack(core.Stack):
         # Allows only the IP of "123.123.123.123"
         # to access this security group for SSH
         sg_nextcloud.add_ingress_rule(
-            peer=ec2.Peer.ipv4("123.123.123.123/32"),
+            peer=ec2.Peer.ipv4("151.66.226.30/32"),
             connection=ec2.Port.tcp(22)
         )
 
