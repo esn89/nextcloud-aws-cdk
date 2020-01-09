@@ -6,9 +6,13 @@ This project also demonstrates using a multi-stack approach to create a networki
 It also deploys the containerized application in the private subnet with a load balancer and NAT gateway in the public subnet.
 Furthermore, an example of how to load userdata into the autoscaling group is also shown.
 
+
 NetworkStack - creates subnets, VPCs and routes and route tables
+
 RDSStack - creates a MySQL instance
+
 EFSStack - creates an elastic file store
+
 ASGStack - contains the code for an autoscaling group, application loadbalancer
 and some security groups to allow the load balancer to access the instance.  Also
 contains an example on how to load user data into the instance.
@@ -16,6 +20,18 @@ contains an example on how to load user data into the instance.
 
 There are a few manual steps needed to be done as some resources such as the EFS are in a [experimental state](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-efs-readme.html).
 
+1. Mount points needs to be created in each of the two availability zones, after deploying the EFSStack
+2. After the creation of the RDS instance, the password and connection string needs to be added to the userdata script [here](userdata.sh).
+
+To run:
+
+`cdk deploy NetworkStack`
+
+`cdk deploy RDSStack`
+
+`cdk deploy EFSStack`
+
+`cdk deploy ASGStack`
 
 ## Useful commands
 
